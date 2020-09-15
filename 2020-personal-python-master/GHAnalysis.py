@@ -3,14 +3,16 @@ import os
 import argparse
 
 class Data:
-    def __init__(self, dict_address: int = None, reload: int = 0):
+    def __init__(self, dict_address: str = None, reload: int = 0):#初始化函数
         if reload == 1:
             self.__init(dict_address)
-            path=dict_address+'\\1.json'
-        if dict_address is None and not os.path.exists('1.json') and not os.path.exists('2.json') and not os.path.exists('3.json'):
+        path=dict_address+'\\1.json'
+        if dict_address is None and not os.path.exists(path) and not os.path.exists('2.json') and not os.path.exists('3.json'):
             raise RuntimeError('error: init failed')
-        x = open('1.json', 'r', encoding='utf-8').read()
-        self.__4Events4PerP = json.loads(x)
+        f=open(path, 'r', encoding='utf-8')
+        while x:
+            self.__4Events4PerP = json.loads(x)
+            print(self.__4Events4PerP)
         x = open('2.json', 'r', encoding='utf-8').read()
         self.__4Events4PerR = json.loads(x)
         x = open('3.json', 'r', encoding='utf-8').read()
@@ -18,7 +20,7 @@ class Data:
 
     def __init(self, dict_address: str):
         json_list = []
-        for root, dic, files in os.walk(dict_address):
+        for root, dic, files in os.walk(dict_address):#遍历文件夹中的目录
             for f in files:
                 if f[-5:] == '.json':
                     json_path = f
@@ -112,7 +114,7 @@ class Run:
             return 0
         else:
             if self.data is None:
-                self.data = Data()
+                self.data = Data("D:\学习\软件工程")
             if self.parser.parse_args().event:
                 if self.parser.parse_args().user:
                     if self.parser.parse_args().repo:
