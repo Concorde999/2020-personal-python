@@ -6,6 +6,7 @@ class Data:
     def __init__(self, dict_address: int = None, reload: int = 0):
         if reload == 1:
             self.__init(dict_address)
+            path=dict_address+'\\1.json'
         if dict_address is None and not os.path.exists('1.json') and not os.path.exists('2.json') and not os.path.exists('3.json'):
             raise RuntimeError('error: init failed')
         x = open('1.json', 'r', encoding='utf-8').read()
