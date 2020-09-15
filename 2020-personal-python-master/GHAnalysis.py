@@ -10,9 +10,11 @@ class Data:
         if dict_address is None and not os.path.exists(path) and not os.path.exists('2.json') and not os.path.exists('3.json'):
             raise RuntimeError('error: init failed')
         f=open(path, 'r', encoding='utf-8')
+        x = f.readline()
         while x:
             self.__4Events4PerP = json.loads(x)
             print(self.__4Events4PerP)
+            x=f.readline()
         x = open('2.json', 'r', encoding='utf-8').read()
         self.__4Events4PerR = json.loads(x)
         x = open('3.json', 'r', encoding='utf-8').read()
